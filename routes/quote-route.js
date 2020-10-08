@@ -2,12 +2,15 @@ const express = require("express");
 const router = express.Router();
 const Quotes = require("../quotes");
 
+// Converts the Quotes object to a json file
 const data = JSON.stringify(Quotes);
 
+// GET all quotes
 router.get("/", (req, res) => {
   res.send(Quotes);
 });
 
+// GET single quote through the id paramater
 router.get("/:id", (req, res) => {
   const quote = data.find((q) => q.id === parseInt(req.params.id));
   if (quote) {
@@ -17,6 +20,7 @@ router.get("/:id", (req, res) => {
   }
 });
 
+// NOT WORKING. NEEDS TO BE FIXED
 router.get("/:author", (req, res) => {
   const quote = data.find((q) => q.author === req.params.author);
   console.log(quote);
